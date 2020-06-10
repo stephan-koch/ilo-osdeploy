@@ -47,23 +47,23 @@
           6133316333383561380a313564346661393830313461356366663938336533303964366435643465
           3337
     
-  vars_prompt:
-
-    - name: osflavor 
-      prompt: "Please select the OS to Install.\n1- OS_ESXI\n2- OS_RHEL\n3- OS_CentOS with Docker \n\n"
-      private: no
-    
-    - name: profile_name
-      prompt: "Please enter a name for the Server Profile.\n"
-      private: no
-
-    - name: ipaddr
-      prompt: "Please enter the server IP address.\n"
-      private: no
-   
-    - name: hostn
-      prompt: "Please enter  the Server Hostname.\n"
-      private: no
+#  vars_prompt:
+#
+#    - name: osflavor 
+#      prompt: "Please select the OS to Install.\n1- OS_ESXI\n2- OS_RHEL\n3- OS_CentOS with Docker \n\n"
+#      private: no
+#    
+#    - name: profile_name
+#      prompt: "Please enter a name for the Server Profile.\n"
+#      private: no
+#
+#    - name: ipaddr
+#      prompt: "Please enter the server IP address.\n"
+#      private: no
+#   
+#    - name: hostn
+#      prompt: "Please enter  the Server Hostname.\n"
+#      private: no
 
   tasks:
     - set_fact: osflavor=ESXIBOOT osbase=ESXIBASE ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/esx67/esx67u3custom.iso source=ksesx.cfg.j2 destination=/persistent/osdepl/esx67/ks_custom67.cfg
