@@ -23,7 +23,7 @@
   tasks: 
     - name: create custom kickstart file
       shell:
-        cmd: ansible-doc -t module oneview_user_facts
+        cmd: env
       register: out
       delegate_to: localhost
 
