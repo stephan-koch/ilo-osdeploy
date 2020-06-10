@@ -23,8 +23,8 @@
   tasks: 
     - name: create custom kickstart file
       shell:
-        cmd: ansible-playbook --version
+        cmd: ansible-doc -t module oneview_user_facts
+      register: out
       delegate_to: localhost
-    - debug: var:stderr
-    - debug: var:stout
-	
+
+    - debug: var=out
