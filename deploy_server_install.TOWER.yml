@@ -67,16 +67,16 @@
 
   tasks:
     - set_fact: osflavor=ESXIBOOT osbase=ESXIBASE ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/esx67/esx67u3custom.iso source=ksesx.cfg.j2 destination=/persistent/osdepl/esx67/ks_custom67.cfg
-      when: (osflavor == "1")
+      when: (osflavor == "1- OS_ESXI")
 
 #    - set_fact: osflavor=ESXI7BOOT osbase=ESXI7BASE ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/esx7/esx7custom.iso source=ksesx.cfg.j2 destination=/persistent/osdepl/esx7/ks_custom7.cfg
 #      when: (osflavor == "4")
 
     - set_fact: osflavor=LINUXBOOT2 osbase=LINUXBOOT ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/rhel77/rhel77custom.iso source=ksrhel.cfg.k2 destination=/persistent/osdepl/rhel77/rhel77ks.cfg
-      when: (osflavor == "2")
+      when: (osflavor == "2- OS_RHEL")
 
     - set_fact: osflavor=LINUXBOOT3 osbase=LINUXBOOT ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/centos/centos7custom.iso source=kscentos.cfg.k2 destination=/persistent/osdepl/centos/centos7ks.cfg
-      when: (osflavor == "3")
+      when: (osflavor == "3- OS_CentOS with Docker")
 
 
     - debug: var=ipaddr
