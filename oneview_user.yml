@@ -1,0 +1,17 @@
+ 
+---
+- hosts: localhost
+  vars:
+    - config: "{{ playbook_dir }}/oneview_config.json"
+      user_name: nobody
+      email: nobody@hpe.com
+  
+  tasks:
+    - name: Gather facts about user
+      oneview_user_facts:
+        config: "{{ config }}"
+      delegate_to: localhost
+
+    - debug: var=users
+
+
