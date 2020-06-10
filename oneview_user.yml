@@ -4,7 +4,6 @@
   vars:
     - config: "{{ playbook_dir }}/oneview_config.json"
       user_name: nobody
-      email: nobody@hpe.com
   
   tasks:
     - name: Gather facts about user

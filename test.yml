@@ -23,5 +23,5 @@
   tasks: 
     - name: create custom kickstart file
       shell:
-        cmd: env
+        cmd: ansible-playbook --version
       delegate_to: localhost
