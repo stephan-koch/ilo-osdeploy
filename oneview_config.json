@@ -1,0 +1,10 @@
+{
+  "ip": "10.0.20.50",
+  "credentials": {
+    "userName": "python",
+    "authLoginDomain": "local",
+    "password": "python123!"
+  },
+  "image_streamer_ip": "10.0.20.54",
+  "api_version": 1200
+}
