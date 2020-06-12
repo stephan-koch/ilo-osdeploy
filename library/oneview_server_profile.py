@@ -222,7 +222,7 @@ import time
 
 from copy import deepcopy
 
-from ansible.module_utils.oneview import (OneViewModuleBasic,
+from ansible.module_utils.oneview import (OneViewModule,
                                           ServerProfileReplaceNamesByUris,
                                           OneViewModuleValueError,
                                           ServerProfileMerger,
