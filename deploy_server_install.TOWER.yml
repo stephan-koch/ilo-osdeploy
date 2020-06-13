@@ -25,30 +25,10 @@
     enclosure_group_name: "3 Frame VC-ETH SAS-Switch"
     auto_assign_server_hardware: "False"
     
-#  vars_prompt:
-#
-#    - name: osflavor 
-#      prompt: "Please select the OS to Install.\n1- OS_ESXI\n2- OS_RHEL\n3- OS_CentOS with Docker \n\n"
-#      private: no
-#    
-#    - name: profile_name
-#      prompt: "Please enter a name for the Server Profile.\n"
-#      private: no
-#
-#    - name: ipaddr
-#      prompt: "Please enter the server IP address.\n"
-#      private: no
-#   
-#    - name: hostn
-#      prompt: "Please enter  the Server Hostname.\n"
-#      private: no
 
   tasks:
     - set_fact: osflavor=ESXIBOOT osbase=ESXIBASE ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/esx67/esx67u3custom.iso source=ksesx.cfg.j2 destination=/persistent/osdepl/esx67/ks_custom67.cfg
       when: (osflavor == "1- OS_ESXI")
-
-#    - set_fact: osflavor=ESXI7BOOT osbase=ESXI7BASE ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/esx7/esx7custom.iso source=ksesx.cfg.j2 destination=/persistent/osdepl/esx7/ks_custom7.cfg
-#      when: (osflavor == "4")
 
     - set_fact: osflavor=LINUXBOOT2 osbase=LINUXBOOT ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/rhel77/rhel77custom.iso source=ksrhel.cfg.k2 destination=/persistent/osdepl/rhel77/rhel77ks.cfg
       when: (osflavor == "2- OS_RHEL")
@@ -86,31 +66,29 @@
 #      debug:
 #        msg: "{{sessionid.json.sessionID}}"
 
-#    - name : "Create Server Profile from Template - {{ profile_name }}"
-#      oneview_server_profile:
-#        config: "{{ config }}"
-#        data:
-#          name: "{{ profile_name }}"
-#          serverProfileTemplateName: "{{ ov_template }}"
-#          serverHardwareName:         "{{ ov_server }}"
-#        params:
-#          force: True
-#      register: mpHostInfo
-#      delegate_to: localhost
-#    - debug:
+    - name : "Create Server Profile from Template - {{ profile_name }}"
+      oneview_server_profile:
+        config: "{{ config }}"
+        data:
+          name: "{{ profile_name }}"
+          serverProfileTemplateName: "{{ ov_template }}"
+          serverHardwareName:         "{{ ov_server }}"
+        params:
+          force: True
+      register: mpHostInfo
+      delegate_to: localhost
+    - debug:
 #        var: mpHostInfo
-#        var:  server_hardware.mpHostInfo.mpIpAddresses[1].address 
+        var:  server_hardware.mpHostInfo.mpIpAddresses[1].address 
 
-#    - name: Task to boot a system using an ISO from an HP iLO interface only if the system is an HP server
-#      hpilo_boot:
-##        host: "{{ server_hardware.mpHostInfo.mpIpAddresses[1].address }}" 
-#        host: "10.0.20.68"
-#        login: "{{ ilo_username }}"
-#        password: "{{ ilo_password }}"
-#        media: cdrom
-#        image: "{{ install }}" 
-#      delegate_to: localhost
-##    - debug: var=ansible_facts
+    - name: Task to boot a system using an ISO from an HP iLO interface only if the system is an HP server
+      hpilo_boot:
+        host: "{{ server_hardware.mpHostInfo.mpIpAddresses[1].address }}" 
+        login: "{{ ilo_username }}"
+        password: "{{ ilo_password }}"
+        media: cdrom
+        image: "{{ install }}" 
+      delegate_to: localhost
 
 # Waiting for the server boot to complete, test for Port 22
     - name: wait for port 22 to become active
@@ -121,13 +99,6 @@
         state: started
         timeout: 1600
       delegate_to: localhost
- 
-#    - name: Remove file (delete file)
-#      file:
-#        path: "/var/www/html/build/{{destion}}"
-#        state: absent
-#      delegate_to: localhost
-
 
 
     - name: Install Nginx
@@ -159,9 +130,6 @@
         hostname: '{{ lookup("env", "VMWARE_HOST") }}'
         username: '{{ lookup("env", "VMWARE_USER") }}'
         password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
-#        hostname: 'suo04ctcvcsa001.demo.local'
-#        username: 'skoch@demo.local'
-#        password: '{{ vcenterPW }}'
         datacenter_name: ctcbbn
         cluster_name: Democluster
         esxi_hostname: '{{ ipaddr }}'
