@@ -24,9 +24,6 @@
     server_hardware_type_name: " SY480G10 M1:416SA M3:4820CNA"
     enclosure_group_name: "3 Frame VC-ETH SAS-Switch"
     auto_assign_server_hardware: "False"
-    machine:
-      ilousername: '{{ ansible_user }}'
-      ilopassword: '{{ ansible_password }}'
     
 #  vars_prompt:
 #
@@ -63,8 +60,7 @@
     - debug: var=ipaddr
     - debug: var=osbase
     - debug: var=hostn
-    - debug: var=ilousername
-    - debug: var=ansible_user
+    - debug: var=ilo_username
 
     - name: create custom kickstart file
       template:
@@ -109,8 +105,8 @@
       hpilo_boot:
 #        host: "{{ server_hardware.mpHostInfo.mpIpAddresses[1].address }}" 
         host: "10.0.20.68"
-        login: "{{ ilousername }}"
-        password: "{{ ilopassword }}"
+        login: "{{ ilo_username }}"
+        password: "{{ ilo_password }}"
         media: cdrom
         image: "{{ install }}" 
       delegate_to: localhost
