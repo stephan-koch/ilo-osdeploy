@@ -5,17 +5,17 @@
     pip:
       name: hpOneView
       umask: "0022"
-      virtualenv: /var/lib/awx/venv/ansible/bin/activate
+      extra_args: "--user"
 
   - name: Install pip module hpICsp
     pip:
       name: hpICsp
       umask: "0022"
-      virtualenv: /var/lib/awx/venv/ansible/bin/activate
+      extra_args: "--user"
 
   - name: Install pip module python-hpilo
     pip:
       name: python-hpilo
       umask: "0022"
-      virtualenv: /var/lib/awx/venv/ansible/bin/activate
+      extra_args: "--user"
 
