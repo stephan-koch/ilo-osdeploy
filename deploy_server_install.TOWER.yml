@@ -64,7 +64,7 @@
     - debug: var=osbase
     - debug: var=hostn
     - debug: var=ilousername
-    - debug: var=ansible_username
+    - debug: var=ansible_user
 
     - name: create custom kickstart file
       template:
