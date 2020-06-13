@@ -63,6 +63,7 @@
     - debug: var=ipaddr
     - debug: var=osbase
     - debug: var=hostn
+    - debug: var=ilousername
 
     - name: create custom kickstart file
       template:
