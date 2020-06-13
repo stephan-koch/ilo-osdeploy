@@ -24,6 +24,9 @@
     server_hardware_type_name: " SY480G10 M1:416SA M3:4820CNA"
     enclosure_group_name: "3 Frame VC-ETH SAS-Switch"
     auto_assign_server_hardware: "False"
+    machine:
+      ilousername: '{{ ansible_user }}'
+      ilopassword: '{{ ansible_password }}'
     
 #  vars_prompt:
 #
@@ -103,8 +106,8 @@
     - name: Task to boot a system using an ISO from an HP iLO interface only if the system is an HP server
       hpilo_boot:
         host: "{{ server_hardware.mpHostInfo.mpIpAddresses[1].address }}" 
-        login: "{{ ansible_user }}"
-        password: "{{ ansible_password }}"
+        login: "{{ ilousername }}"
+        password: "{{ ilopassword }}"
         media: cdrom
         image: "{{ install }}" 
       delegate_to: localhost
