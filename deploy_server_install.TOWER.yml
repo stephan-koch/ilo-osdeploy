@@ -170,4 +170,4 @@
         state: present
         validate_certs: False
       delegate_to: localhost
-      when: (osabse == "ESXIBASE")
+      when: (osbase == "ESXIBASE")
