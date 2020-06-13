@@ -101,16 +101,16 @@
 #        var: mpHostInfo
 #        var:  server_hardware.mpHostInfo.mpIpAddresses[1].address 
 
-    - name: Task to boot a system using an ISO from an HP iLO interface only if the system is an HP server
-      hpilo_boot:
-#        host: "{{ server_hardware.mpHostInfo.mpIpAddresses[1].address }}" 
-        host: "10.0.20.68"
-        login: "{{ ilo_username }}"
-        password: "{{ ilo_password }}"
-        media: cdrom
-        image: "{{ install }}" 
-      delegate_to: localhost
-#    - debug: var=ansible_facts
+#    - name: Task to boot a system using an ISO from an HP iLO interface only if the system is an HP server
+#      hpilo_boot:
+##        host: "{{ server_hardware.mpHostInfo.mpIpAddresses[1].address }}" 
+#        host: "10.0.20.68"
+#        login: "{{ ilo_username }}"
+#        password: "{{ ilo_password }}"
+#        media: cdrom
+#        image: "{{ install }}" 
+#      delegate_to: localhost
+##    - debug: var=ansible_facts
 
 # Waiting for the server boot to complete, test for Port 22
     - name: wait for port 22 to become active
@@ -171,3 +171,4 @@
         validate_certs: False
       delegate_to: localhost
       when: (osflavor == "ESXIBOOT")
+    - debug: var=osflavor
