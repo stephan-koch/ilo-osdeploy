@@ -64,6 +64,7 @@
     - debug: var=osbase
     - debug: var=hostn
     - debug: var=ilousername
+    - debug: var=ansible_username
 
     - name: create custom kickstart file
       template:
@@ -89,24 +90,25 @@
 #      debug:
 #        msg: "{{sessionid.json.sessionID}}"
 
-    - name : "Create Server Profile from Template - {{ profile_name }}"
-      oneview_server_profile:
-        config: "{{ config }}"
-        data:
-          name: "{{ profile_name }}"
-          serverProfileTemplateName: "{{ ov_template }}"
-          serverHardwareName:         "{{ ov_server }}"
-        params:
-          force: True
-      register: mpHostInfo
-      delegate_to: localhost
-    - debug:
+#    - name : "Create Server Profile from Template - {{ profile_name }}"
+#      oneview_server_profile:
+#        config: "{{ config }}"
+#        data:
+#          name: "{{ profile_name }}"
+#          serverProfileTemplateName: "{{ ov_template }}"
+#          serverHardwareName:         "{{ ov_server }}"
+#        params:
+#          force: True
+#      register: mpHostInfo
+#      delegate_to: localhost
+#    - debug:
 #        var: mpHostInfo
-        var:  server_hardware.mpHostInfo.mpIpAddresses[1].address 
+#        var:  server_hardware.mpHostInfo.mpIpAddresses[1].address 
 
     - name: Task to boot a system using an ISO from an HP iLO interface only if the system is an HP server
       hpilo_boot:
-        host: "{{ server_hardware.mpHostInfo.mpIpAddresses[1].address }}" 
+#        host: "{{ server_hardware.mpHostInfo.mpIpAddresses[1].address }}" 
+        host: "10.0.20.68"
         login: "{{ ilousername }}"
         password: "{{ ilopassword }}"
         media: cdrom
