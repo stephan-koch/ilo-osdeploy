@@ -170,5 +170,4 @@
         state: present
         validate_certs: False
       delegate_to: localhost
-      when: (osflavor == "ESXIBOOT")
-    - debug: var=osflavor
+      when: (osabse == "ESXIBASE")
