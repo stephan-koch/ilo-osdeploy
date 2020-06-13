@@ -6,16 +6,19 @@
       name: hpOneView
       umask: "0022"
       extra_args: "--user"
+      state: present
 
   - name: Install pip module hpICsp
     pip:
       name: hpICsp
       umask: "0022"
       extra_args: "--user"
+      state: present
 
   - name: Install pip module python-hpilo
     pip:
       name: python-hpilo
       umask: "0022"
       extra_args: "--user"
+      state: present
 
