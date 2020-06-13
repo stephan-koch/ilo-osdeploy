@@ -135,7 +135,7 @@
         ports:
             - 80:80
       delegate_to: "{{ ipaddr }}"
-      when: (osflavor == "LINUXBOOT3")
+      when: (osflavor == "3- OS_CentOS with Docker")
 
 
     - name: Tweak Nginx
@@ -144,7 +144,7 @@
       become_method: sudo
       command:  docker exec -it nginx sed -i 's/nginx/Discover More/g' /usr/share/nginx/html/index.html
       delegate_to: "{{ ipaddr }}"
-      when: (osflavor == "LINUXBOOT3")
+      when: (osflavor == "3- OS_CentOS with Docker")
 
 
 
