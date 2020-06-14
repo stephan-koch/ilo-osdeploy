@@ -23,4 +23,4 @@
     config: '{{  lookup("env", ovconfig_file) }}'
 
   tasks: 
-    - debug: var=ovconfig_file
+    - debug: var=config
