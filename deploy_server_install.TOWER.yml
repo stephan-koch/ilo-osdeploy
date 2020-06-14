@@ -42,7 +42,6 @@
     - debug: var=osbase
     - debug: var=hostn
     - debug: var=ilo_username
-    - debug: var=ovconfig
 
 
     - name: Install pip module hpOneView
