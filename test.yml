@@ -19,12 +19,8 @@
 
 - hosts: localhost
   gather_facts: no
+  vars:
+    config: '{{  lookup("env", ovconfig_file) }}'
 
   tasks: 
-    - name: create custom kickstart file
-      shell:
-        cmd: env
-      register: out
-      delegate_to: localhost
-
-    - debug: var=out
+    - debug: var=ovconfig
