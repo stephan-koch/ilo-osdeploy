@@ -20,7 +20,8 @@
 - hosts: localhost
   gather_facts: no
   vars:
-    config: '{{  lookup("env", ovconfig_file) }}'
+    config: '{{  ovconfig_file }}'
 
   tasks: 
     - debug: var=config
+    - debug: var=ovconfig_file
