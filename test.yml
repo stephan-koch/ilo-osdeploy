@@ -25,3 +25,11 @@
   tasks: 
     - debug: var=config
     - debug: var=ovconfig_file
+
+
+    - name: Print to screen google authenticator details
+      command: /bin/cat {{ ovconfig_file }}
+      register: details
+
+
+    - debug: msg="{{ details.stdout_lines }}"
