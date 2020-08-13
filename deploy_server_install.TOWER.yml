@@ -65,12 +65,12 @@
         extra_args: "--user"
         state: present
 
-    -name mount NFS /persistent
-     mount:
-       path: /persistent
-       src: infraqumulo.demo.local:/persistent
-       state: mounted
-       fstype: nfs
+    - name mount NFS /persistent
+      mount:
+        path: /persistent
+        src: infraqumulo.demo.local:/persistent
+        state: mounted
+        fstype: nfs
 
 
     - name: create custom kickstart file
