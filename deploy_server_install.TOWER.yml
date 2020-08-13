@@ -69,7 +69,8 @@
     - name: create custom kickstart file
       template:
         src: "{{source}}"
-        dest:  "{{destination}}"
+        dest:  "/tmp"
+#        dest:  "{{destination}}"
       delegate_to: localhost
 
 #    - name: Get sessionID
