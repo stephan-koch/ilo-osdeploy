@@ -65,19 +65,11 @@
         extra_args: "--user"
         state: present
 
-    - name mount NFS /persistent
-      mount:
-        path: /persistent
-        src: "infraqumulo.demo.local:/persistent"
-        state: mounted
-        fstype: nfs
-
 
     - name: create custom kickstart file
       template:
         src: "{{source}}"
-        dest:  "/tmp"
-#        dest:  "{{destination}}"
+        dest:  "{{destination}}"
       delegate_to: localhost
 
 #    - name: Get sessionID
