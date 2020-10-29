@@ -6,7 +6,6 @@
     enclosure_group_name: "3 Frame VC-ETH SAS-Switch"
     auto_assign_server_hardware: "False"
     
-
   tasks:
     - set_fact: osflavor=ESXIBOOT osbase=ESXIBASE ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/esx7/esx7custom.iso source=ksesx.cfg.j2 destination=/persistent/osdepl/esx7/ks_custom7.cfg
       when: (osflavor == "1- OS_ESXI")
@@ -17,12 +16,10 @@
     - set_fact: osflavor=LINUXBOOT3 osbase=LINUXBOOT ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/centos/centos7custom.iso source=kscentos.cfg.k2 destination=/persistent/osdepl/centos/centos7ks.cfg
       when: (osflavor == "3- OS_CentOS with Docker")
 
-
     - debug: var=ipaddr
     - debug: var=osbase
     - debug: var=hostn
     - debug: var=ilo_username
-
 
     - name: Install pip module hpOneView
       pip:
@@ -44,7 +41,6 @@
         umask: "0022"
         extra_args: "--user"
         state: present
-
 
     - name: create custom kickstart file
       template:
@@ -84,7 +80,6 @@
         timeout: 1600
       delegate_to: localhost
 
-
     - name: Install Nginx
       remote_user: vagrant
       become: yes
@@ -98,7 +93,6 @@
       delegate_to: "{{ ipaddr }}"
       when: (osflavor == "3- OS_CentOS with Docker")
 
-
     - name: Tweak Nginx
       remote_user: vagrant
       become: yes
@@ -106,9 +100,7 @@
       command:  docker exec -it nginx sed -i 's/nginx/the SYNTAX - HPE Meeting/g' /usr/share/nginx/html/index.html
       delegate_to: "{{ ipaddr }}"
       when: (osflavor == "3- OS_CentOS with Docker")
-
-
-
+      
     - name: Add ESXi Host to vCenter
       vmware_host:
         hostname: '{{ lookup("env", "VMWARE_HOST") }}'
