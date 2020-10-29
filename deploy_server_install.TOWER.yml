@@ -162,4 +162,4 @@
         state: present
         validate_certs: False
       delegate_to: localhost
-      when: (osbase == "ESXIBOOT")
+      when: (osbase == "ESXIBASE")
