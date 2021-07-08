@@ -1,11 +1,13 @@
 lang en_US.UTF-8
-keyboard us
-timezone --utc America/New_York
+keyboard de
+timezone Europe/Berlin --isUtc
+#platform x86, AMD64, or Intel EM64T
 text
+cdrom
 skipx
 network  --bootproto=static --ip={{ipaddr}} --netmask=255.255.255.0 --gateway=10.1.36.1 --nameserver=10.1.20.5 --hostname={{hostn}}
 firstboot --enable
-cdrom
+auth --passalgo=sha512 --useshadow
 rootpw HP1nvent
 #ignoredisk --only-use=/dev/disk/by-id/dm-name-mpatha
 zerombr
@@ -13,7 +15,7 @@ clearpart --all --initlabel
 autopart --type=lvm
 reboot
 
-user --name=vagrant --plaintext --password Compaq1! --groups=vagrant,wheel
+user --name=vagrant --plaintext --password HP1nvent --groups=vagrant,wheel
 #repo --name=docker --baseurl=https://download.docker.com/linux/centos/docker-ce.repo
 
 # Disable firewall and selinux
@@ -24,8 +26,8 @@ selinux --disabled
 %end
 
 %packages
-@Base
-@Core
+@^minimal-environment
+kexec-tools
 %end
 
 
