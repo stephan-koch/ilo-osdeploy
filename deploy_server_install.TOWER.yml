@@ -15,6 +15,9 @@
 
     - set_fact: osflavor=LINUXBOOT3 osbase=LINUXBOOT ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/centos/centos7custom.iso source=kscentos.cfg.k2 destination=/persistent/osdepl/centos/centos7ks.cfg
       when: (osflavor == "3- OS_CentOS with Docker")
+      
+    - set_fact: osflavor=LINUXBOOT4 osbase=LINUXBOOT ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/rocky/Rocky84_kickstart-efi.iso source=ksrocky.cfg.j2 destination=/persistent/osdepl/rocky/rockyks.cfg
+      when: (osflavor == "4- OS_Rocky8.4 with Docker")  
 
     - debug: var=ipaddr
     - debug: var=osbase
@@ -80,16 +83,16 @@
         timeout: 1600
       delegate_to: localhost
       
-    - name: Install pip module docker for next task
-      remote_user: vagrant
-      become: yes
-      become_method: sudo
-      pip:
-        name: docker
-        umask: "0022"
-        state: present    
-      delegate_to: "{{ ipaddr }}"
-      when: (osflavor == "3- OS_CentOS with Docker")
+#    - name: Install pip module docker for next task
+#      remote_user: vagrant
+#      become: yes
+#      become_method: sudo
+#      pip:
+#        name: docker
+#        umask: "0022"
+#        state: present    
+#      delegate_to: "{{ ipaddr }}"
+#      when: (osflavor == "3- OS_CentOS with Docker") or (osflavor == "4- OS_Rocky with Docker")
 
     - name: Install Nginx
       remote_user: vagrant
@@ -102,7 +105,7 @@
         ports:
             - 80:80
       delegate_to: "{{ ipaddr }}"
-      when: (osflavor == "3- OS_CentOS with Docker")
+      when: (osflavor == "3- OS_CentOS with Docker") or (osflavor == "4- OS_Rocky with Docker")
 
     - name: Tweak Nginx
       remote_user: vagrant
@@ -110,7 +113,7 @@
       become_method: sudo
       command:  docker exec -it nginx sed -i 's/nginx/the HPE Meeting/g' /usr/share/nginx/html/index.html
       delegate_to: "{{ ipaddr }}"
-      when: (osflavor == "3- OS_CentOS with Docker")
+      when: (osflavor == "3- OS_CentOS with Docker") or (osflavor == "4- OS_Rocky with Docker")
       
     - name: Add ESXi Host to vCenter
       vmware_host:
