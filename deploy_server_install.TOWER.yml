@@ -34,6 +34,13 @@
         umask: "0022"
         extra_args: "--user"
         state: present
+   
+    - name: Install pip module docker
+      pip:
+        name: docker
+        umask: "0022"
+        extra_args: "--user"
+        state: present
 
     - name: Install pip module python-hpilo
       pip:
@@ -97,7 +104,7 @@
       remote_user: vagrant
       become: yes
       become_method: sudo
-      command:  docker exec -it nginx sed -i 's/nginx/the SYNTAX - HPE Meeting/g' /usr/share/nginx/html/index.html
+      command:  docker exec -it nginx sed -i 's/nginx/the HPE Meeting/g' /usr/share/nginx/html/index.html
       delegate_to: "{{ ipaddr }}"
       when: (osflavor == "3- OS_CentOS with Docker")
       
