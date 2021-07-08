@@ -87,7 +87,6 @@
       pip:
         name: docker
         umask: "0022"
-        extra_args: "--user"
         state: present    
       delegate_to: "{{ ipaddr }}"
       when: (osflavor == "3- OS_CentOS with Docker")
