@@ -52,4 +52,5 @@ sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 /usr/bin/yum -y install python-pip
 /usr/bin/yum -y install python3
 /usr/bin/pip3 install docker
+/usr/bin/pip install docker
 %end
