@@ -50,5 +50,5 @@ sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 /usr/sbin/usermod  -a -G docker vagrant
 /usr/bin/yum -y install epel-release
 /usr/bin/yum -y install python-pip
-/usr/bin/pip install docker-py
+/usr/bin/yum -y install python3
 %end
