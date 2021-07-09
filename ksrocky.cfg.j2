@@ -9,7 +9,7 @@ network  --bootproto=static --ip={{ipaddr}} --netmask=255.255.255.0 --gateway=10
 firstboot --enable
 auth --passalgo=sha512 --useshadow
 rootpw HP1nvent
-#ignoredisk --only-use=/dev/disk/by-id/dm-name-mpatha
+ignoredisk --only-use=/dev/disk/by-id/dm-name-mpatha
 zerombr
 clearpart --all --initlabel
 autopart --type=lvm
