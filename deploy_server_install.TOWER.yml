@@ -94,26 +94,26 @@
 #      delegate_to: "{{ ipaddr }}"
 #      when: (osflavor == "3- OS_CentOS with Docker") or (osflavor == "4- OS_Rocky with Docker")
 
-    - name: Install Nginx
-      remote_user: vagrant
-      become: yes
-      become_method: sudo
-      community.general.docker_container:
-        name: nginx
-        image: nginx:latest
-        detach: True
-        ports:
-            - 80:80
-      delegate_to: "{{ ipaddr }}"
-      when: (osflavor == "3- OS_CentOS with Docker") or (osflavor == "4- OS_Rocky with Docker")
+#   - name: Install Nginx
+#     remote_user: vagrant
+#     become: yes
+#     become_method: sudo
+#     community.general.docker_container:
+#       name: nginx
+#       image: nginx:latest
+#       detach: True
+#       ports:
+#           - 80:80
+#     delegate_to: "{{ ipaddr }}"
+#     when: (osflavor == "3- OS_CentOS with Docker") or (osflavor == "4- OS_Rocky with Docker")
 
-    - name: Tweak Nginx
-      remote_user: vagrant
-      become: yes
-      become_method: sudo
-      command:  docker exec -it nginx sed -i 's/nginx/the HPE Meeting/g' /usr/share/nginx/html/index.html
-      delegate_to: "{{ ipaddr }}"
-      when: (osflavor == "3- OS_CentOS with Docker") or (osflavor == "4- OS_Rocky with Docker")
+#   - name: Tweak Nginx
+#     remote_user: vagrant
+#     become: yes
+#     become_method: sudo
+#     command:  docker exec -it nginx sed -i 's/nginx/the HPE Meeting/g' /usr/share/nginx/html/index.html
+#     delegate_to: "{{ ipaddr }}"
+#     when: (osflavor == "3- OS_CentOS with Docker") or (osflavor == "4- OS_Rocky with Docker")
       
     - name: Add ESXi Host to vCenter
       community.vmware.vmware_host:
