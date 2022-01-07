@@ -98,7 +98,7 @@
       remote_user: vagrant
       become: yes
       become_method: sudo
-      docker_container:
+      community.general.docker_container:
         name: nginx
         image: nginx:latest
         detach: True
@@ -116,7 +116,7 @@
       when: (osflavor == "3- OS_CentOS with Docker") or (osflavor == "4- OS_Rocky with Docker")
       
     - name: Add ESXi Host to vCenter
-      vmware_host:
+      community.vmware.vmware_host:
         hostname: '{{ lookup("env", "VMWARE_HOST") }}'
         username: '{{ lookup("env", "VMWARE_USER") }}'
         password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
