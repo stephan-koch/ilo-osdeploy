@@ -7,7 +7,7 @@
     auto_assign_server_hardware: "False"
     
   tasks:
-    - set_fact: osflavor=ESXIBOOT osbase=ESXIBASE ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/esx7/esx7custom.iso source=ksesx.cfg.j2 destination=ks_custom7.cfg
+    - set_fact: osflavor=ESXIBOOT osbase=ESXIBASE ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/esx7/esx7custom.iso source=ksesx.cfg.j2 destination=/persistent/osdepl/esx7/ks_custom7.cfg
       when: (osflavor == "1- OS_ESXI")
 
     - set_fact: osflavor=LINUXBOOT2 osbase=LINUXBOOT ov_template=ANSIBLE_OS_Deploy_via_iLO install=http://osdepl.demo.local/rhel77/rhel77custom.iso source=ksrhel.cfg.k2 destination=/persistent/osdepl/rhel77/rhel77ks.cfg
@@ -52,7 +52,7 @@
       delegate_to: localhost
 
     - name : "Create Server Profile from Template - {{ profile_name }}"
-      oneview_server_profile:
+      hpe.oneview.oneview_server_profile:
         config: "{{ config }}"
         data:
           name: "{{ profile_name }}"
