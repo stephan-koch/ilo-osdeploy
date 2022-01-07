@@ -24,14 +24,9 @@
     - debug: var=hostn
     - debug: var=ilo_username
 
-    - name: Sleep for 300 seconds and continue with play
-      wait_for:
-        timeout: 300
-      delegate_to: localhost
-
-    - name: Install pip module hpOneView
+    - name: Install pip module hpeOneView
       pip:
-        name: hpOneView
+        name: hpeOneView
         umask: "0022"
         extra_args: "--user"
         state: present
