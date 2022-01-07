@@ -66,7 +66,7 @@
         var:  server_hardware.mpHostInfo.mpIpAddresses[1].address 
 
     - name: Task to boot a system using an ISO from an HP iLO interface only if the system is an HP server
-      hpilo_boot:
+      community.general.hpilo_boot:
         host: "{{ server_hardware.mpHostInfo.mpIpAddresses[1].address }}" 
         login: "{{ ilo_username }}"
         password: "{{ ilo_password }}"
