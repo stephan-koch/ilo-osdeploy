@@ -98,7 +98,7 @@
       remote_user: vagrant
       become: yes
       become_method: sudo
-      community.general.docker_container:
+      community.docker.docker_container:
         name: nginx
         image: nginx:latest
         detach: True
